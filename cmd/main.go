@@ -28,7 +28,9 @@ func main() {
 		})
 	})
 
-	server.GET("users/", UserController.GetUsers)
+	server.GET("/users", UserController.GetUsers)
+	server.POST("/users", UserController.CreateUser)
+	server.GET("/users/:userId", UserController.GetUsersByID)
 
 	server.Run(":8000")
 
