@@ -66,7 +66,7 @@ func (ur *UserRepository) CreateUser(user model.User) (int, error) {
 	return id, nil
 }
 
-func (ur *UserRepository) GetUserByID(user_id int) (*model.User, error) {
+func (ur *UserRepository) GetUserByID(userId int) (*model.User, error) {
 	query, err := ur.connection.Prepare("SELECT * FROM user WHERE id = $1")
 	if err != nil {
 		fmt.Println(err)
@@ -74,7 +74,7 @@ func (ur *UserRepository) GetUserByID(user_id int) (*model.User, error) {
 	}
 
 	var user model.User
-	err = query.QueryRow(user_id).Scan(
+	err = query.QueryRow(userId).Scan(
 		&user.ID,
 		&user.FirstName,
 		&user.LastName,
